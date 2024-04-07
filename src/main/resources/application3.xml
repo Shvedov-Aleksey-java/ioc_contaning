@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--
+    речь пойдет о: init-method= и destroy-method=. инит метод используется на уровне создание и до сомого внедрения
+    дестрой используется после на уровне передаче бина перед самым закрытием
+    -->
+    <bean name="user3" id="id5" class="io.contaning.XmlConfigure.model.User" init-method="init"
+          destroy-method="destroy">
+        <property name="name" ref="lex"/>
+        <property name="size" value="173"/>
+        <property name="list">
+            <list value-type="java.lang.Double">
+                <value>2.2</value>
+                <value>3.2</value>
+                <value>6.5</value>
+            </list>
+        </property>
+        <property name="map">
+            <map key-type="java.lang.Integer" value-type="java.lang.String">
+                <entry key="34" value-ref="lex"/>
+                <entry key="33" value="ll"/>
+                <entry key="21" value="cvc"/>
+            </map>
+        </property>
+    </bean>
+    <bean name="lex" class="java.lang.String">
+        <constructor-arg value="Been Aleksei"/>
+    </bean>
+</beans>

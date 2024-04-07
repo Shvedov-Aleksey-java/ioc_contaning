@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+    создали два бина готовых к внедрению так же бинам можно задавать ид и имя для уточнения какой
+    именно бин вызывать так же можно задавать сразу несколько имен через запятую: name="repo1, r3"
+    -->
+    <bean name="repo1, r3" id="id1" class="io.contaning.XmlConfigure.repository.UserRepository"/>
+    <bean name="repo2" id="id2" class="io.contaning.XmlConfigure.repository.UserRepository"/>
+    <!--
+     так же создали обьект юзер и полностью заполнили все его данные через конструктор
+     это обезательное условие если нету дефолтного конструктора без параметров
+     -->
+    <bean name="user" id="id3" class="io.contaning.XmlConfigure.model.User">
+        <constructor-arg name="name" value="aleksei"/>
+        <constructor-arg name="size" type="java.lang.Integer" value="173"/>
+        <constructor-arg name="list" type="java.util.List">
+            <list value-type="java.lang.Double">
+                <value>1.3</value>
+                <value>1.5</value>
+                <value>5.6</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="map" type="java.util.Map">
+            <map key-type="java.lang.Integer" value-type="java.lang.String">
+                <entry key="1" value="key1"/>
+                <entry key="2" value="key2"/>
+                <entry key="6" value="key6"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <!--
+     создали обьект юзер 2 и заполнили его через сетеры у юзера должен быть дефолтный конструктор
+     и сеторы для того что бы можно было заполнить
+     -->
+    <bean name="user2" id="id4" class="io.contaning.XmlConfigure.model.User">
+        <property name="name" value="new Aleksei"/>
+        <property name="size" value="171"/>
+        <property name="list">
+            <list value-type="java.lang.Double">
+                <value>2.2</value>
+                <value>3.2</value>
+                <value>4.2</value>
+            </list>
+        </property>
+        <property name="map">
+            <map key-type="java.lang.Integer" value-type="java.lang.String">
+                <entry key="34" value="www"/>
+                <entry key="11" value="ll"/>
+                <entry key="21" value="cvc"/>
+            </map>
+        </property>
+    </bean>
+    <!--
+     так же можем создавать собственные бины классов и внедрять их в наши сетеры конструкторы
+     примеры: <bean name="lex" class="java.lang.String"> <bean name="int" class="java.lang.Integer">
+     и мы их внедряем по необходимости куда нужно пример внедрения строки: 67,72,73,62,63
+     можно в лист можно в карту
+     -->
+    <bean name="user3" id="id5" class="io.contaning.XmlConfigure.model.User">
+        <property name="name" ref="lex"/>
+        <property name="size" ref="int"/>
+        <property name="list">
+            <list value-type="java.lang.Double">
+                <value>2.2</value>
+                <value>3.2</value>
+                <ref bean="double"/>
+            </list>
+        </property>
+        <property name="map">
+            <map key-type="java.lang.Integer" value-type="java.lang.String">
+                <entry key="34" value-ref="lex"/>
+                <entry key-ref="int" value="ll"/>
+                <entry key="21" value="cvc"/>
+            </map>
+        </property>
+    </bean>
+    <bean name="lex" class="java.lang.String">
+        <constructor-arg value="Been Aleksei"/>
+    </bean>
+    <bean name="int" class="java.lang.Integer">
+        <constructor-arg value="666"/>
+    </bean>
+    <bean name="double" class="java.lang.Double">
+        <constructor-arg value="9.99"/>
+    </bean>
+
+</beans>

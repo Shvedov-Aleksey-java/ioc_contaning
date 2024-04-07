@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+    <!--
+    внедрять можно какие угодно бины и куда угодно при этом поля можно делать файнал это не приведет к ошибке
+    так же хочется расказать про scope стр.12 это: два видо создание обьектов если выбрать scope="prototype"
+    то при каждом получении обьекта будет создоватся новый если scope="singleton" то мы будем получать один
+    и тот же обьект. Так же важно не забывать что все что мы создаем это синглтон
+    -->
+    <bean name="mapper" class="io.contaning.XmlConfigure.mapper.Mapper"/>
+    <bean name="userRepo" class="io.contaning.XmlConfigure.repository.UserRepository"/>
+    <bean name="user" id="id3" class="io.contaning.XmlConfigure.model.User" scope="prototype">
+        <constructor-arg name="name" value="aleksei"/>
+        <constructor-arg name="size" type="java.lang.Integer" value="173"/>
+        <constructor-arg name="list" type="java.util.List">
+            <list value-type="java.lang.Double">
+                <value>1.3</value>
+                <value>1.5</value>
+                <value>5.6</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="map" type="java.util.Map">
+            <map key-type="java.lang.Integer" value-type="java.lang.String">
+                <entry key="1" value="key1"/>
+                <entry key="2" value="key2"/>
+                <entry key="6" value="key6"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+    <bean name="service" class="io.contaning.XmlConfigure.service.UserService">
+        <constructor-arg name="mapper" ref="mapper"/>
+        <constructor-arg name="repository" ref="userRepo"/>
+        <constructor-arg name="user" ref="user"/>
+    </bean>
+    <!--
+    так же можно внедрять файл application.properties в наши бины что бы в дальнейшем брать
+    из него информацыю
+    аналогично мы можем в заголовке написать строки под номером 4,6,7
+    и тогда мы можем закоментировать бин:
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+    и можем использовать множество имен контекста: <context:, в нашем примере это строка 55
+    -->
+    <!--
+    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
+    -->
+    <context:property-placeholder location="classpath:application.properties"/>
+    <!--
+    что бы получать наши проперти нужно использовать вот такую вот запись ${db.username}
+    гле db.username уже из нашего пропертиез файла. обращение одно и то же что при использавании
+    context тоже самое если мы создадим бин. ${}
+    -->
+    <bean name="user1" id="id1" class="io.contaning.XmlConfigure.model.User" scope="prototype">
+        <constructor-arg name="name" value="${db.username}"/>
+        <constructor-arg name="size" type="java.lang.Integer" value="173"/>
+        <constructor-arg name="list" type="java.util.List">
+            <list value-type="java.lang.Double">
+                <value>1.3</value>
+                <value>1.5</value>
+                <value>5.6</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg name="map" type="java.util.Map">
+            <map key-type="java.lang.Integer" value-type="java.lang.String">
+                <entry key="1" value="${db.url}"/>
+                <!--
+                так же у спринга есть свой язык обращений к бинам и его методам
+                пример использования строка 78 мы берем значения бина и так как
+                он у нас стринг мы меняем с помощью метода класса одно значение
+                на другое, обращение всегда происходит через #{имя бина . метод класса}
+                -->
+                <entry key="2" value="#{lex.replace('Been', 'not been')}"/>
+                <entry key="6" value="key6"/>
+            </map>
+        </constructor-arg>
+    </bean>
+    <bean name="lex" class="java.lang.String">
+        <constructor-arg value="Been Aleksei"/>
+    </bean>
+</beans>
