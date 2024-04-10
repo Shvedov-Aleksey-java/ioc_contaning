@@ -1,14 +1,15 @@
-package io.contaning.XmlConfigure;
+package io.containing.XmlConfigure;
 
-import io.contaning.XmlConfigure.model.User;
-import io.contaning.XmlConfigure.repository.UserRepository;
-import io.contaning.XmlConfigure.service.UserService;
+import io.containing.XmlConfigure.model.User;
+import io.containing.XmlConfigure.repository.UserRepository;
+import io.containing.XmlConfigure.service.UserService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * создаем контекст из файла application.xml где содержится все наши бины
  */
 public class SpringRunner {
+    /*
     public static void main(String[] args) {
         var context = new ClassPathXmlApplicationContext("application.xml");
         var repository = context.getBean("id1");
@@ -34,4 +35,6 @@ public class SpringRunner {
         System.out.println(userC3);
         context3.close();
     }
+
+     */
 }

@@ -6,13 +6,13 @@
     создали два бина готовых к внедрению так же бинам можно задавать ид и имя для уточнения какой
     именно бин вызывать так же можно задавать сразу несколько имен через запятую: name="repo1, r3"
     -->
-    <bean name="repo1, r3" id="id1" class="io.contaning.XmlConfigure.repository.UserRepository"/>
-    <bean name="repo2" id="id2" class="io.contaning.XmlConfigure.repository.UserRepository"/>
+    <bean name="repo1, r3" id="id1" class="io.containing.XmlConfigure.repository.UserRepository"/>
+    <bean name="repo2" id="id2" class="io.containing.XmlConfigure.repository.UserRepository"/>
     <!--
      так же создали обьект юзер и полностью заполнили все его данные через конструктор
      это обезательное условие если нету дефолтного конструктора без параметров
      -->
-    <bean name="user" id="id3" class="io.contaning.XmlConfigure.model.User">
+    <bean name="user" id="id3" class="io.containing.XmlConfigure.model.User">
         <constructor-arg name="name" value="aleksei"/>
         <constructor-arg name="size" type="java.lang.Integer" value="173"/>
         <constructor-arg name="list" type="java.util.List">
@@ -34,7 +34,7 @@
      создали обьект юзер 2 и заполнили его через сетеры у юзера должен быть дефолтный конструктор
      и сеторы для того что бы можно было заполнить
      -->
-    <bean name="user2" id="id4" class="io.contaning.XmlConfigure.model.User">
+    <bean name="user2" id="id4" class="io.containing.XmlConfigure.model.User">
         <property name="name" value="new Aleksei"/>
         <property name="size" value="171"/>
         <property name="list">
@@ -58,7 +58,7 @@
      и мы их внедряем по необходимости куда нужно пример внедрения строки: 67,72,73,62,63
      можно в лист можно в карту
      -->
-    <bean name="user3" id="id5" class="io.contaning.XmlConfigure.model.User">
+    <bean name="user3" id="id5" class="io.containing.XmlConfigure.model.User">
         <property name="name" ref="lex"/>
         <property name="size" ref="int"/>
         <property name="list">

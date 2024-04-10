@@ -1,5 +1,7 @@
-package io.contaning.XmlConfigure.model;
+package io.containing.annotationConfigure.model;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,10 +20,12 @@ public class User {
     private List<Double> list;
     private Map<Integer, String> map;
 
+    @PostConstruct
     public void init() {
         System.out.println("init User");
     }
 
+    @PreDestroy
     public void destroy() {
         System.out.println("destroy User");
     }

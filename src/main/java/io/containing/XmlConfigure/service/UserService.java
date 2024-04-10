@@ -1,8 +1,9 @@
-package io.contaning.XmlConfigure.service;
+package io.containing.XmlConfigure.service;
 
-import io.contaning.XmlConfigure.mapper.Mapper;
-import io.contaning.XmlConfigure.model.User;
-import io.contaning.XmlConfigure.repository.UserRepository;
+
+import io.containing.XmlConfigure.mapper.Mapper;
+import io.containing.XmlConfigure.repository.UserRepository;
+import io.containing.XmlConfigure.model.User;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 

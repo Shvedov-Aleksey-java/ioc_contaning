@@ -13,9 +13,9 @@
     то при каждом получении обьекта будет создоватся новый если scope="singleton" то мы будем получать один
     и тот же обьект. Так же важно не забывать что все что мы создаем это синглтон
     -->
-    <bean name="mapper" class="io.contaning.XmlConfigure.mapper.Mapper"/>
-    <bean name="userRepo" class="io.contaning.XmlConfigure.repository.UserRepository"/>
-    <bean name="user" id="id3" class="io.contaning.XmlConfigure.model.User" scope="prototype">
+    <bean name="mapper" class="io.containing.XmlConfigure.mapper.Mapper"/>
+    <bean name="userRepo" class="io.containing.XmlConfigure.repository.UserRepository"/>
+    <bean name="user" id="id3" class="io.containing.XmlConfigure.model.User" scope="prototype">
         <constructor-arg name="name" value="aleksei"/>
         <constructor-arg name="size" type="java.lang.Integer" value="173"/>
         <constructor-arg name="list" type="java.util.List">
@@ -34,7 +34,7 @@
         </constructor-arg>
     </bean>
 
-    <bean name="service" class="io.contaning.XmlConfigure.service.UserService">
+    <bean name="service" class="io.containing.XmlConfigure.service.UserService">
         <constructor-arg name="mapper" ref="mapper"/>
         <constructor-arg name="repository" ref="userRepo"/>
         <constructor-arg name="user" ref="user"/>
@@ -58,7 +58,7 @@
     гле db.username уже из нашего пропертиез файла. обращение одно и то же что при использавании
     context тоже самое если мы создадим бин. ${}
     -->
-    <bean name="user1" id="id1" class="io.contaning.XmlConfigure.model.User" scope="prototype">
+    <bean name="user1" id="id1" class="io.containing.XmlConfigure.model.User" scope="prototype">
         <constructor-arg name="name" value="${db.username}"/>
         <constructor-arg name="size" type="java.lang.Integer" value="173"/>
         <constructor-arg name="list" type="java.util.List">

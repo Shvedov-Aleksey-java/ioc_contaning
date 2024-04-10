@@ -7,7 +7,7 @@
     речь пойдет о: init-method= и destroy-method=. инит метод используется на уровне создание и до сомого внедрения
     дестрой используется после на уровне передаче бина перед самым закрытием
     -->
-    <bean name="user3" id="id5" class="io.contaning.XmlConfigure.model.User" init-method="init"
+    <bean name="user3" id="id5" class="io.containing.XmlConfigure.model.User" init-method="init"
           destroy-method="destroy">
         <property name="name" ref="lex"/>
         <property name="size" value="173"/>
