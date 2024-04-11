@@ -26,7 +26,7 @@ import org.springframework.stereotype.Service;
  * @Component: все остальное обзываем компанентом
  */
 //@Component
-//@Service
+//@CompanyService
 //@Repository
 //@Controller
 @ToString

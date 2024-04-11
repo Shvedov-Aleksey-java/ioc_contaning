@@ -8,7 +8,7 @@
 
     <!--
     этот контекст нужен что бы работать чисто через анотации не добовляя bean в xml
-    точнее он сканирует все классы ищет @Component, @Service, @Repository, @Controller
+    точнее он сканирует все классы ищет @Component, @CompanyService, @Repository, @Controller
     и добовляет их в контекс
     -->
     <context:component-scan base-package="io.containing.annotationConfigure"/>
